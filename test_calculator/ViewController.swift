@@ -9,8 +9,8 @@
 
 // TODO
 // if last was = then after clicking number reset
-// add new window with last number picked (and) operation
 // fix bug that you cant dobule click button
+// maximum 8 numbers. maybe 9
 
 import UIKit
 
@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     var operation = 0;
     
     @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var labelHistory: UILabel!
+    
     
     @IBAction func numbers(_ sender: UIButton)
     {
@@ -61,6 +64,7 @@ class ViewController: UIViewController {
                 label.text = "+";
             }
             
+            labelHistory.text = String(previousNumber)
             operation = sender.tag
             performingMath = true;
         }
@@ -82,10 +86,12 @@ class ViewController: UIViewController {
             {
                 label.text = String(previousNumber + numberOnScreen)
             }
+            labelHistory.text = ""
         }
         else if sender.tag == 11
         {
             label.text = ""
+            labelHistory.text = ""
             previousNumber = 0;
             numberOnScreen = 0;
             operation = 0;
