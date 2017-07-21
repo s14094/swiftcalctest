@@ -6,7 +6,6 @@
 //  Copyright © 2017 ActumLab. All rights reserved.
 //
 
-
 //todo
 // after clicking equals do the same operation on last numbers
 // visual fixes
@@ -25,9 +24,26 @@ class ViewController: UIViewController {
     var result = "";
     var newOperation = 0;
     var operationChange = false;
+    
     let maxNumbersOnScreen:Int = 9;
 
 
+
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBAction func buttonHistory(_ sender: Any)
+    {
+        if textField.text != ""
+        {
+            performSegue(withIdentifier: "segue", sender: self)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let secondController = segue.destination as! SecondViewController
+        secondController.result1 = textField.text!
+    }
+    
     func hardReset()
     {
         label.text = ""
