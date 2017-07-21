@@ -7,6 +7,11 @@
 //
 
 
+//todo
+// after clicking equals do the same operation on last numbers
+// visual fixes
+// full history on new page or slider or something like this
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -18,9 +23,21 @@ class ViewController: UIViewController {
     var numberOfCharacters:String = "";
     var equalsClicked = false;
     var result = "";
-    
+    var newOperation = 0;
+    var operationChange = false;
     let maxNumbersOnScreen:Int = 9;
 
+
+    func hardReset()
+    {
+        label.text = ""
+        labelHistory.text = ""
+        previousNumber = 0
+        numberOnScreen = 0
+        operation = 0
+        newOperation = 0
+        operationChange = false
+    }
     
     @IBOutlet weak var label: UILabel!
     
@@ -29,14 +46,17 @@ class ViewController: UIViewController {
     
     @IBAction func numbers(_ sender: UIButton)
     {
+        operationChange = false
+        
+        if newOperation != 0
+        {
+            operation = newOperation
+        }
         
         if equalsClicked == true
         {
-            label.text = ""
+            hardReset()
             labelHistory.text = result
-            previousNumber = 0;
-            numberOnScreen = 0;
-            operation = 0;
             equalsClicked = false
         }
         
@@ -66,28 +86,37 @@ class ViewController: UIViewController {
     {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 && operation == 0
         {
+            operationChange = true
+            if newOperation == 0
+            {
             previousNumber = Double(label.text!)!
+            }
             
             if sender.tag == 12 //Divide
             {
                 label.text = "/";
+                newOperation = sender.tag
             }
             else if sender.tag == 13 //Multiply
             {
                 label.text = "x";
+                newOperation = sender.tag
             }
             else if sender.tag == 14 //Minus
             {
                 label.text = "-";
+                newOperation = sender.tag
             }
             else if sender.tag == 15 //Plus
             {
                 label.text = "+";
+                newOperation = sender.tag
             }
+            
             
             labelHistory.adjustsFontSizeToFitWidth = true
             labelHistory.text = String(previousNumber)
-            operation = sender.tag
+            //operation = sender.tag
             performingMath = true;
         }
         else if sender.tag == 16 // equals
@@ -121,11 +150,7 @@ class ViewController: UIViewController {
         }
         else if sender.tag == 11
         {
-            label.text = ""
-            labelHistory.text = ""
-            previousNumber = 0;
-            numberOnScreen = 0;
-            operation = 0;
+            hardReset()
         }
     }
     
