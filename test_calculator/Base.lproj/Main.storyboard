@@ -351,6 +351,7 @@
                     <connections>
                         <outlet property="label1" destination="6L6-hA-lG0" id="6T5-Fh-lEQ"/>
                         <outlet property="label2" destination="y1o-Y3-b9y" id="wAD-uY-naH"/>
+                        <outlet property="label3" destination="mXc-6f-bvf" id="hab-BJ-jDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1mA-LX-lvF" userLabel="First Responder" sceneMemberID="firstResponder"/>

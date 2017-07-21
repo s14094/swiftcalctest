@@ -27,7 +27,9 @@ class ViewController: UIViewController {
     var newOperation = 0;
     var operationChange = false;
     var historyFullResult:String = "";
-    var arrayHistory = [String]()
+    var arrayHistory = [String]();
+    
+    var actuallNumberInHistory = 0; //TOddO RESET
     
     let maxNumbersOnScreen:Int = 9;
     let maxNumberOfHistorySlots = 8;
@@ -46,6 +48,7 @@ class ViewController: UIViewController {
         let secondController = segue.destination as! SecondViewController
         secondController.result1 = textField.text!
         secondController.result2 = historyFullResult
+        secondController.result3 = arrayHistory[0]
     }
     
     func createResult()
@@ -56,16 +59,17 @@ class ViewController: UIViewController {
     
     func createHistory()
     {
-        createResult()
-        for i in 1...maxNumberOfHistorySlots
-        {
             // zrobic fukcje ktora popbiera cale dzialanie i zapuje ja w spostaci stringa
             // moze jednoczesnie dac ja do tej funkcji
             
             //arrayHistory.append(historyFullResult)
-            //arrayHistory.insert(historyFullResult, at: i)
+        print(historyFullResult)
+            //arrayHistory.insert(historyFullResult, at: actuallNumberInHistory)
+        arrayHistory.insert(historyFullResult, at: actuallNumberInHistory) // dziala, trzeba jechac od 0
+        //dodac iteracje
+        //arrayHistory[actuallNumberInHistory] = Int(historyFullResult)!
+        
             //arrayHistory(i) += historyFullResult
-        }
     }
     
     func hardReset()
@@ -186,6 +190,7 @@ class ViewController: UIViewController {
                 label.text = String(previousNumber + numberOnScreen)
             }
             result = label.text!
+            createResult()
             createHistory()
             
         }
