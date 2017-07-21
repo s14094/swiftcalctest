@@ -15,15 +15,14 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var label2: UILabel!
     
-    @IBOutlet weak var label3: UILabel!
-    
-    
     var result1 = String()
+    var result2 = String()
     
     override func viewDidLoad() {
         //super.viewDidLoad()
 
         label1.text = result1
+        label2.text = result2
         
     }
 

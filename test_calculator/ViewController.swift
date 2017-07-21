@@ -10,6 +10,8 @@
 // after clicking equals do the same operation on last numbers
 // visual fixes
 // full history on new page or slider or something like this
+//FIX: historia bierze wynik tylko jezeli dzialanie bylo pelne tzn przy wyborze 1st liczby
+// nie zapisuje jej do historii po nacisnieciu equals
 
 import UIKit
 
@@ -24,10 +26,11 @@ class ViewController: UIViewController {
     var result = "";
     var newOperation = 0;
     var operationChange = false;
+    var historyFullResult:String = "";
+    var arrayHistory = [String]()
     
     let maxNumbersOnScreen:Int = 9;
-
-
+    let maxNumberOfHistorySlots = 8;
 
     @IBOutlet weak var textField: UITextField!
     
@@ -42,6 +45,27 @@ class ViewController: UIViewController {
     {
         let secondController = segue.destination as! SecondViewController
         secondController.result1 = textField.text!
+        secondController.result2 = historyFullResult
+    }
+    
+    func createResult()
+    {
+        historyFullResult = result
+        // pobieranie samych wynikow czy calych dzialan z wynikami wlacznie ???
+    }
+    
+    func createHistory()
+    {
+        createResult()
+        for i in 1...maxNumberOfHistorySlots
+        {
+            // zrobic fukcje ktora popbiera cale dzialanie i zapuje ja w spostaci stringa
+            // moze jednoczesnie dac ja do tej funkcji
+            
+            //arrayHistory.append(historyFullResult)
+            //arrayHistory.insert(historyFullResult, at: i)
+            //arrayHistory(i) += historyFullResult
+        }
     }
     
     func hardReset()
@@ -162,6 +186,7 @@ class ViewController: UIViewController {
                 label.text = String(previousNumber + numberOnScreen)
             }
             result = label.text!
+            createHistory()
             
         }
         else if sender.tag == 11
