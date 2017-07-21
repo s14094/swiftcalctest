@@ -7,11 +7,6 @@
 //
 
 
-// TODO
-// if last was = then after clicking number reset
-// fix bug that you cant dobule click button
-// maximum 8 numbers. maybe 9
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -20,6 +15,12 @@ class ViewController: UIViewController {
     var previousNumber:Double = 0;
     var performingMath = false
     var operation = 0;
+    var numberOfCharacters:String = "";
+    var equalsClicked = false;
+    var result = "";
+    
+    let maxNumbersOnScreen:Int = 9;
+
     
     @IBOutlet weak var label: UILabel!
     
@@ -28,6 +29,25 @@ class ViewController: UIViewController {
     
     @IBAction func numbers(_ sender: UIButton)
     {
+        
+        if equalsClicked == true
+        {
+            label.text = ""
+            labelHistory.text = result
+            previousNumber = 0;
+            numberOnScreen = 0;
+            operation = 0;
+            equalsClicked = false
+        }
+        
+        label.adjustsFontSizeToFitWidth = true
+        numberOfCharacters = label.text!
+        
+        if numberOfCharacters.characters.count >= maxNumbersOnScreen
+        {
+        }
+        else
+        {
         if performingMath == true
         {
             label.text = String(sender.tag-1)
@@ -39,11 +59,12 @@ class ViewController: UIViewController {
             label.text = label.text! + String(sender.tag-1)
             numberOnScreen = Double(label.text!)!
         }
+        }
     }
     
     @IBAction func buttons(_ sender: UIButton)
     {
-        if label.text != "" && sender.tag != 11 && sender.tag != 16
+        if label.text != "" && sender.tag != 11 && sender.tag != 16 && operation == 0
         {
             previousNumber = Double(label.text!)!
             
@@ -64,15 +85,24 @@ class ViewController: UIViewController {
                 label.text = "+";
             }
             
+            labelHistory.adjustsFontSizeToFitWidth = true
             labelHistory.text = String(previousNumber)
             operation = sender.tag
             performingMath = true;
         }
-        else if sender.tag == 16
+        else if sender.tag == 16 // equals
         {
+            equalsClicked = true
             if operation == 12
             {
+                if numberOnScreen == 0
+                {
+                    label.text = "error"
+                }
+                else
+                {
                 label.text = String(previousNumber / numberOnScreen)
+                }
             }
             else if operation == 13
             {
@@ -86,7 +116,8 @@ class ViewController: UIViewController {
             {
                 label.text = String(previousNumber + numberOnScreen)
             }
-            labelHistory.text = ""
+            result = label.text!
+            
         }
         else if sender.tag == 11
         {
