@@ -9,7 +9,6 @@
 //todo
 // after clicking equals do the same operation on last numbers
 // visual fixes
-// full history on new page or slider or something like this
 
 
 import UIKit
@@ -26,12 +25,9 @@ class ViewController: UIViewController {
     var newOperation = 0;
     var operationChange = false;
     var historyFullResult:String = "";
-    //var arrayHistory = [String]();
     var arrayHistory: [String] = ["-","-","-","-","-","-","-"]
+    var actuallNumberInHistory = 0;
 
-    
-    var actuallNumberInHistory = 0; //TODO RESET
-    
     let maxNumbersOnScreen:Int = 9;
     let maxNumberOfHistorySlots = 6;
 
@@ -55,12 +51,8 @@ class ViewController: UIViewController {
         secondController.result7 = arrayHistory[6]
     }
     
-    
     func createHistory()
     {
-        
-        historyFullResult = result
-        
         
         for currentNumberOfArray in (1...maxNumberOfHistorySlots).reversed()
         {
@@ -68,7 +60,7 @@ class ViewController: UIViewController {
         }
         
         arrayHistory[0] = historyFullResult
-
+        
     }
     
     func hardReset()
@@ -80,6 +72,7 @@ class ViewController: UIViewController {
         operation = 0
         newOperation = 0
         operationChange = false
+        historyFullResult = ""
     }
     
     @IBOutlet weak var label: UILabel!
@@ -107,6 +100,7 @@ class ViewController: UIViewController {
         
         if numberOfCharacters.characters.count >= maxNumbersOnScreen
         {
+            // zabezpieczenie = wpisanie max znakow na ekranie
         }
         else
         {
@@ -153,6 +147,8 @@ class ViewController: UIViewController {
             {
                 label.text = "+";
                 newOperation = sender.tag
+                //historyResult += String(previousNumber)
+                //historyResult += " + "
             }
             
             
@@ -174,6 +170,7 @@ class ViewController: UIViewController {
                 {
                 label.text = String(previousNumber / numberOnScreen)
                     result = label.text!
+                    historyFullResult += String(previousNumber) + " / " + String(numberOnScreen) + " = " + String(result)
                     createHistory()
                 }
             }
@@ -181,18 +178,21 @@ class ViewController: UIViewController {
             {
                 label.text = String(previousNumber * numberOnScreen)
                 result = label.text!
+                historyFullResult += String(previousNumber) + " * " + String(numberOnScreen) + " = " + String(result)
                 createHistory()
             }
             else if operation == 14
             {
                 label.text = String(previousNumber - numberOnScreen)
                 result = label.text!
+                historyFullResult += String(previousNumber) + " - " + String(numberOnScreen) + " = " + String(result)
                 createHistory()
             }
             else if operation == 15
             {
                 label.text = String(previousNumber + numberOnScreen)
                 result = label.text!
+                historyFullResult += String(previousNumber) + " + " + String(numberOnScreen) + " = " + String(result)
                 createHistory()
             }
             
