@@ -25,6 +25,16 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var label7: UILabel!
     
+    @IBAction func resetButton(_ sender: Any) {
+        label1.text = "-"
+        label2.text = "-"
+        label3.text = "-"
+        label4.text = "-"
+        label5.text = "-"
+        label6.text = "-"
+        label7.text = "-"
+    }
+    
     //TODO 2 petle
     
     var result1 = String()

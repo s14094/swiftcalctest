@@ -9,6 +9,7 @@
 //todo
 // after clicking equals do the same operation on last numbers
 // visual fixes
+// reset
 
 
 import UIKit
@@ -27,7 +28,9 @@ class ViewController: UIViewController {
     var historyFullResult:String = "";
     var arrayHistory: [String] = ["-","-","-","-","-","-","-"]
     var actuallNumberInHistory = 0;
+    var createdHistory:Bool = false;
 
+    
     let maxNumbersOnScreen:Int = 9;
     let maxNumberOfHistorySlots = 6;
 
@@ -53,15 +56,21 @@ class ViewController: UIViewController {
     
     func createHistory()
     {
-        
+        if createdHistory == false {
+            
         for currentNumberOfArray in (1...maxNumberOfHistorySlots).reversed()
         {
             arrayHistory[currentNumberOfArray] = arrayHistory[(currentNumberOfArray - 1)]
         }
         
         arrayHistory[0] = historyFullResult
+            
+            createdHistory = true
+            
+        }
         
     }
+
     
     func hardReset()
     {
@@ -73,6 +82,7 @@ class ViewController: UIViewController {
         newOperation = 0
         operationChange = false
         historyFullResult = ""
+        createdHistory = false
     }
     
     @IBOutlet weak var label: UILabel!
@@ -82,6 +92,7 @@ class ViewController: UIViewController {
     @IBAction func numbers(_ sender: UIButton)
     {
         operationChange = false
+        createdHistory = false
         
         if newOperation != 0
         {
@@ -147,8 +158,6 @@ class ViewController: UIViewController {
             {
                 label.text = "+";
                 newOperation = sender.tag
-                //historyResult += String(previousNumber)
-                //historyResult += " + "
             }
             
             
