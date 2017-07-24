@@ -248,13 +248,6 @@
                                     <segue destination="DxG-09-WP4" kind="show" identifier="segue" id="H3Z-YQ-0hF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f8S-lW-Hrv">
-                                <rect key="frame" x="201" y="276" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -262,7 +255,6 @@
                     <connections>
                         <outlet property="label" destination="6Xf-Ih-GeC" id="RvA-g6-Xtn"/>
                         <outlet property="labelHistory" destination="cjv-Bg-UAj" id="TGz-Ln-mv4"/>
-                        <outlet property="textField" destination="f8S-lW-Hrv" id="gkB-cO-xdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -330,13 +322,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5a-UL-RxR">
-                                <rect key="frame" x="16" y="564" width="343" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6L6-hA-lG0">
                                 <rect key="frame" x="16" y="158" width="343" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -352,6 +337,10 @@
                         <outlet property="label1" destination="6L6-hA-lG0" id="6T5-Fh-lEQ"/>
                         <outlet property="label2" destination="y1o-Y3-b9y" id="wAD-uY-naH"/>
                         <outlet property="label3" destination="mXc-6f-bvf" id="hab-BJ-jDC"/>
+                        <outlet property="label4" destination="Rpe-hU-hY6" id="Zts-eS-0IT"/>
+                        <outlet property="label5" destination="Uda-ER-uIj" id="pfL-P7-8gi"/>
+                        <outlet property="label6" destination="0J6-Zv-VL2" id="LRu-Xq-M0D"/>
+                        <outlet property="label7" destination="Bta-xm-nBg" id="bEm-Mx-8xL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1mA-LX-lvF" userLabel="First Responder" sceneMemberID="firstResponder"/>

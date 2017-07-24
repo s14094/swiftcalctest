@@ -10,8 +10,7 @@
 // after clicking equals do the same operation on last numbers
 // visual fixes
 // full history on new page or slider or something like this
-//FIX: historia bierze wynik tylko jezeli dzialanie bylo pelne tzn przy wyborze 1st liczby
-// nie zapisuje jej do historii po nacisnieciu equals
+
 
 import UIKit
 
@@ -27,49 +26,49 @@ class ViewController: UIViewController {
     var newOperation = 0;
     var operationChange = false;
     var historyFullResult:String = "";
-    var arrayHistory = [String]();
+    //var arrayHistory = [String]();
+    var arrayHistory: [String] = ["-","-","-","-","-","-","-"]
+
     
-    var actuallNumberInHistory = 0; //TOddO RESET
+    var actuallNumberInHistory = 0; //TODO RESET
     
     let maxNumbersOnScreen:Int = 9;
-    let maxNumberOfHistorySlots = 8;
+    let maxNumberOfHistorySlots = 6;
 
-    @IBOutlet weak var textField: UITextField!
     
     @IBAction func buttonHistory(_ sender: Any)
     {
-        if textField.text != ""
-        {
-            performSegue(withIdentifier: "segue", sender: self)
-        }
+      //  if textField.text != ""
+      //  {
+      //      performSegue(withIdentifier: "segue", sender: self)
+      //  }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let secondController = segue.destination as! SecondViewController
-        secondController.result1 = textField.text!
-        secondController.result2 = historyFullResult
-        secondController.result3 = arrayHistory[0]
+        secondController.result1 = arrayHistory[0]
+        secondController.result2 = arrayHistory[1]
+        secondController.result3 = arrayHistory[2]
+        secondController.result4 = arrayHistory[3]
+        secondController.result5 = arrayHistory[4]
+        secondController.result6 = arrayHistory[5]
+        secondController.result7 = arrayHistory[6]
     }
     
-    func createResult()
-    {
-        historyFullResult = result
-        // pobieranie samych wynikow czy calych dzialan z wynikami wlacznie ???
-    }
     
     func createHistory()
     {
-            // zrobic fukcje ktora popbiera cale dzialanie i zapuje ja w spostaci stringa
-            // moze jednoczesnie dac ja do tej funkcji
-            
-            //arrayHistory.append(historyFullResult)
-        print(historyFullResult)
-            //arrayHistory.insert(historyFullResult, at: actuallNumberInHistory)
-        arrayHistory.insert(historyFullResult, at: actuallNumberInHistory) // dziala, trzeba jechac od 0
-        //dodac iteracje
-        //arrayHistory[actuallNumberInHistory] = Int(historyFullResult)!
         
-            //arrayHistory(i) += historyFullResult
+        historyFullResult = result
+        
+        
+        for currentNumberOfArray in (1...maxNumberOfHistorySlots).reversed()
+        {
+            arrayHistory[currentNumberOfArray] = arrayHistory[(currentNumberOfArray - 1)]
+        }
+        
+        arrayHistory[0] = historyFullResult
+
     }
     
     func hardReset()
@@ -86,7 +85,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet weak var labelHistory: UILabel!
-    
     
     @IBAction func numbers(_ sender: UIButton)
     {
@@ -175,23 +173,28 @@ class ViewController: UIViewController {
                 else
                 {
                 label.text = String(previousNumber / numberOnScreen)
+                    result = label.text!
+                    createHistory()
                 }
             }
             else if operation == 13
             {
                 label.text = String(previousNumber * numberOnScreen)
+                result = label.text!
+                createHistory()
             }
             else if operation == 14
             {
                 label.text = String(previousNumber - numberOnScreen)
+                result = label.text!
+                createHistory()
             }
             else if operation == 15
             {
                 label.text = String(previousNumber + numberOnScreen)
+                result = label.text!
+                createHistory()
             }
-            result = label.text!
-            createResult()
-            createHistory()
             
         }
         else if sender.tag == 11
